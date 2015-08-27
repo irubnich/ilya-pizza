@@ -1,0 +1,74 @@
+==================================================================
+https://keybase.io/ilya
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://rubni.ch
+  * I am ilya (https://keybase.io/ilya) on keybase.
+  * I have a public key with fingerprint 8965 BF7E E47B 15D8 6F69  C704 F6DF 153C 90B9 24CC
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "8965bf7ee47b15d86f69c704f6df153c90b924cc",
+            "host": "keybase.io",
+            "key_id": "f6df153c90b924cc",
+            "kid": "0101349e7c3b4cea32c982bbd7fabaec95b41c935ad36bd10ce0459044044bfb57050a",
+            "uid": "b516f00aba9c22516298e334c0917e00",
+            "username": "ilya"
+        },
+        "revoke": {
+            "sig_ids": [
+                "afc66376b71cd0d2aa1bb0af74469f1bbfcfabea9cd2a80292d99aa1c20727830f"
+            ]
+        },
+        "service": {
+            "hostname": "rubni.ch",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1440641121,
+    "expire_in": 157680000,
+    "prev": "1f9bfc7381aa3243779f23e348a3da5eadb9eef9549135a3c109ef4fedcbf8ac",
+    "seqno": 17,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.43
+Comment: https://keybase.io/crypto
+
+yMJZAnicbVJtaBRHGL5YP0g0UoMiitg4CtUa4szO7M7OXUCrrWIrJVYDxY9eZ2Zn
+cpvE3XNv72qIkVDwoz8UoYgKEYIitlixGmlAEKq2JiD5k0ZJMIhaSqlfCJ4g/jDO
+Bv3nMDAz7zzv8z7zzPtn9Qepqora0s/2kvElX1XcvHqkmGq6m+cdQIReO0h3gFY1
+sWg/aFZRPvKDGKSByxxbaKoUoQLZnutoh0kKiXY8jWwsGRTMIlKCOpALC0mGoRG8
+oOr90MTMIet7JvoefOvEBUQQYcIUlVgQqTi2JHMtITyqueBKMlsQJBm2uYcd4SEo
+FSQ2g4SYKbSwKbQhN3TFCTphI0dDaFKZtCxzsJirMCYSMkQVhAmwoKKA71AG7be1
+c9BZByJVCltV8vqC32wEF0B6K+BaOg6mjqBIetCzOEdCQK4pIQ7TZq+lkahMIXPn
+QotZHmMGJC1ILepiqMF2w22qlXw5QZ449LZyVBSBXy9zRk8+CuNQhm0mmovjfDoR
+FLfnE9T3SmTf5meFH3jma0xCSUUFPwxAGhmkjP2EEBk/HIKQheqA2pX3I5X1E4RN
+HReakZRRJUOJNDPCKXYRN14TTCnTFlaYuBx73FbcE0wpzWzCkDEdSwSZ0kQrTwrt
+8uTjCmpnEBpuanTyZsNpTAt4XIwU6Lz2x7bJqYqq1NQpk5LuSlVVfviu504NTBvv
+ZH3xws2ZWAzkb8wIGo4fQNV/za+9tejyL/roRvX3yj3RyAq472IXX/zTnOBiG15B
+xh4Pj37368jKhnsDvWE/n9G3dvCf/S0ny88f/bfm5EOn/vbqfLln0+fV58q7WvZl
+hpdXf/vN0OITdzYvbRro+PTMtZf9uS9m7d676sXWrwfdyuhB/6KxocpG0L0GXlp6
++Nj6Q69GxfDTzrFl5QX0/+KXmfLtrp0fZe5P7+5dePCTkbM/nEUbBne0jGbW5Z7d
+auw/n2n899VI76qrT7LNtRvLl66Md7U0WPOa6Omaz7pBTV98v/7Ea7rB/bFn/2/B
+zDnzrm95cHhobuFCzeye3+mz2R83VL0B69RAcg==
+=bgio
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ilya
+
+==================================================================
+
