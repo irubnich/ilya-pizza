@@ -1,9 +1,40 @@
-<title>Ilya</title>
-<style>
-	body { width: 200px; }
-</style>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ilya Rubnich</title>
+		<!--
+			@irubnich
+			https://github.com/irubnich
+			https://www.linkedin.com/in/ilya-rubnich-bb50a437
+		-->
+	</head>
+	<body>
+		<h1>Ilya Rubnich</h1>
+		<img id="img">
 
-<marquee scrollamount="10">hello world</marquee>
+		<script>
+			// No old browser support.
 
-<!-- i'm not that bad at html -->
-<!-- harrys.com -->
+			var showGIF = function(result) {
+				var posts = result.data.children;
+				var gifs = posts.filter(function(post) {
+					return post.data.domain === "i.imgur.com" && post.data.url.includes(".gifv");
+				});
+
+				var gif = gifs[Math.floor(Math.random() * gifs.length)];
+				document.getElementById("img").src = gif.data.url.slice(0, -1);
+			};
+
+			document.addEventListener("DOMContentLoaded", function() {
+				var xhr = new XMLHttpRequest();
+				xhr.open("GET", "https://www.reddit.com/r/aww/hot.json");
+				xhr.onreadystatechange = function() {
+					if(xhr.readyState === 4 && xhr.status === 200) {
+						showGIF(JSON.parse(xhr.responseText));
+					}
+				};
+				xhr.send();
+			});
+		</script>
+	</body>
+</html>
