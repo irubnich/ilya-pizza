@@ -16,6 +16,14 @@
 
 		<script>
 			// No old browser support.
+			var httpToHttps = function(url) {
+				var element = document.createElement("a");
+				element.href = url;
+				if(element.protocol === "http:") {
+					element.protocol = "https:";
+				}
+				return element.href;
+			};
 
 			var showGIF = function(result) {
 				var posts = result.data.children;
@@ -24,8 +32,11 @@
 				});
 
 				var gif = gifs[Math.floor(Math.random() * gifs.length)];
-				document.getElementById("img").src = gif.data.url.slice(0, -1);
+				var url = gif.data.url.slice(0, -1);
+				url = httpToHttps(url);
+				document.getElementById("img").src = url;
 			};
+
 
 			document.addEventListener("DOMContentLoaded", function() {
 				var xhr = new XMLHttpRequest();
