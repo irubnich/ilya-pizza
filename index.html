@@ -14,40 +14,6 @@
 		<h1>Ilya Rubnich</h1>
 		<img id="img">
 
-		<script>
-			// No old browser support.
-			var httpToHttps = function(url) {
-				var element = document.createElement("a");
-				element.href = url;
-				if(element.protocol === "http:") {
-					element.protocol = "https:";
-				}
-				return element.href;
-			};
-
-			var showGIF = function(result) {
-				var posts = result.data.children;
-				var gifs = posts.filter(function(post) {
-					return post.data.domain === "i.imgur.com" && post.data.url.includes(".gifv");
-				});
-
-				var gif = gifs[Math.floor(Math.random() * gifs.length)];
-				var url = gif.data.url.slice(0, -1);
-				url = httpToHttps(url);
-				document.getElementById("img").src = url;
-			};
-
-
-			document.addEventListener("DOMContentLoaded", function() {
-				var xhr = new XMLHttpRequest();
-				xhr.open("GET", "https://www.reddit.com/r/aww/hot.json");
-				xhr.onreadystatechange = function() {
-					if(xhr.readyState === 4 && xhr.status === 200) {
-						showGIF(JSON.parse(xhr.responseText));
-					}
-				};
-				xhr.send();
-			});
-		</script>
+		<script src="dist/index.js"></script>
 	</body>
 </html>
