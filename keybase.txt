@@ -4,66 +4,47 @@ https://keybase.io/ilya
 
 I hereby claim:
 
-  * I am an admin of http://rubni.ch
+  * I am an admin of https://rubni.ch
   * I am ilya (https://keybase.io/ilya) on keybase.
-  * I have a public key with fingerprint 8965 BF7E E47B 15D8 6F69  C704 F6DF 153C 90B9 24CC
+  * I have a public key ASCbgsLbgKA-ia7guqtz2jBa2n1awdaiyys27kHIpGpvOgo
 
 To do so, I am signing this object:
 
 {
     "body": {
         "key": {
-            "fingerprint": "8965bf7ee47b15d86f69c704f6df153c90b924cc",
+            "eldest_kid": "0101349e7c3b4cea32c982bbd7fabaec95b41c935ad36bd10ce0459044044bfb57050a",
             "host": "keybase.io",
-            "key_id": "f6df153c90b924cc",
-            "kid": "0101349e7c3b4cea32c982bbd7fabaec95b41c935ad36bd10ce0459044044bfb57050a",
+            "kid": "01209b82c2db80a03e89aee0baab73da305ada7d5ac1d6a2cb2b36ee41c8a46a6f3a0a",
             "uid": "b516f00aba9c22516298e334c0917e00",
             "username": "ilya"
         },
-        "revoke": {
-            "sig_ids": [
-                "afc66376b71cd0d2aa1bb0af74469f1bbfcfabea9cd2a80292d99aa1c20727830f"
-            ]
-        },
         "service": {
             "hostname": "rubni.ch",
-            "protocol": "http:"
+            "protocol": "https:"
         },
         "type": "web_service_binding",
         "version": 1
     },
-    "ctime": 1440641121,
-    "expire_in": 157680000,
-    "prev": "1f9bfc7381aa3243779f23e348a3da5eadb9eef9549135a3c109ef4fedcbf8ac",
-    "seqno": 17,
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.16"
+    },
+    "ctime": 1469497496,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1469497476,
+        "hash": "209583c0de7d26192b1faf356368cadd567b104dbfe78644f765d81a0ec7763772b9c3f6005f0b29724d8c2f013a16ee11230d221371b7cca2b4a6547a4df196",
+        "seqno": 542224
+    },
+    "prev": "66433a5451cfbd0009edf5628d64e90ba1f161ecc989e52646bbddea4a11797d",
+    "seqno": 31,
     "tag": "signature"
 }
 
 which yields the signature:
 
------BEGIN PGP MESSAGE-----
-Version: Keybase OpenPGP v2.0.43
-Comment: https://keybase.io/crypto
-
-yMJZAnicbVJtaBRHGL5YP0g0UoMiitg4CtUa4szO7M7OXUCrrWIrJVYDxY9eZ2Zn
-cpvE3XNv72qIkVDwoz8UoYgKEYIitlixGmlAEKq2JiD5k0ZJMIhaSqlfCJ4g/jDO
-Bv3nMDAz7zzv8z7zzPtn9Qepqora0s/2kvElX1XcvHqkmGq6m+cdQIReO0h3gFY1
-sWg/aFZRPvKDGKSByxxbaKoUoQLZnutoh0kKiXY8jWwsGRTMIlKCOpALC0mGoRG8
-oOr90MTMIet7JvoefOvEBUQQYcIUlVgQqTi2JHMtITyqueBKMlsQJBm2uYcd4SEo
-FSQ2g4SYKbSwKbQhN3TFCTphI0dDaFKZtCxzsJirMCYSMkQVhAmwoKKA71AG7be1
-c9BZByJVCltV8vqC32wEF0B6K+BaOg6mjqBIetCzOEdCQK4pIQ7TZq+lkahMIXPn
-QotZHmMGJC1ILepiqMF2w22qlXw5QZ449LZyVBSBXy9zRk8+CuNQhm0mmovjfDoR
-FLfnE9T3SmTf5meFH3jma0xCSUUFPwxAGhmkjP2EEBk/HIKQheqA2pX3I5X1E4RN
-HReakZRRJUOJNDPCKXYRN14TTCnTFlaYuBx73FbcE0wpzWzCkDEdSwSZ0kQrTwrt
-8uTjCmpnEBpuanTyZsNpTAt4XIwU6Lz2x7bJqYqq1NQpk5LuSlVVfviu504NTBvv
-ZH3xws2ZWAzkb8wIGo4fQNV/za+9tejyL/roRvX3yj3RyAq472IXX/zTnOBiG15B
-xh4Pj37368jKhnsDvWE/n9G3dvCf/S0ny88f/bfm5EOn/vbqfLln0+fV58q7WvZl
-hpdXf/vN0OITdzYvbRro+PTMtZf9uS9m7d676sXWrwfdyuhB/6KxocpG0L0GXlp6
-+Nj6Q69GxfDTzrFl5QX0/+KXmfLtrp0fZe5P7+5dePCTkbM/nEUbBne0jGbW5Z7d
-auw/n2n899VI76qrT7LNtRvLl66Md7U0WPOa6Omaz7pBTV98v/7Ea7rB/bFn/2/B
-zDnzrm95cHhobuFCzeye3+mz2R83VL0B69RAcg==
-=bgio
------END PGP MESSAGE-----
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgm4LC24CgPomu4Lqrc9owWtp9WsHWossrNu5ByKRqbzoKp3BheWxvYWTFAu17ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxMzQ5ZTdjM2I0Y2VhMzJjOTgyYmJkN2ZhYmFlYzk1YjQxYzkzNWFkMzZiZDEwY2UwNDU5MDQ0MDQ0YmZiNTcwNTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwOWI4MmMyZGI4MGEwM2U4OWFlZTBiYWFiNzNkYTMwNWFkYTdkNWFjMWQ2YTJjYjJiMzZlZTQxYzhhNDZhNmYzYTBhIiwidWlkIjoiYjUxNmYwMGFiYTljMjI1MTYyOThlMzM0YzA5MTdlMDAiLCJ1c2VybmFtZSI6ImlseWEifSwic2VydmljZSI6eyJob3N0bmFtZSI6InJ1Ym5pLmNoIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMTYifSwiY3RpbWUiOjE0Njk0OTc0OTYsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ2OTQ5NzQ3NiwiaGFzaCI6IjIwOTU4M2MwZGU3ZDI2MTkyYjFmYWYzNTYzNjhjYWRkNTY3YjEwNGRiZmU3ODY0NGY3NjVkODFhMGVjNzc2Mzc3MmI5YzNmNjAwNWYwYjI5NzI0ZDhjMmYwMTNhMTZlZTExMjMwZDIyMTM3MWI3Y2NhMmI0YTY1NDdhNGRmMTk2Iiwic2Vxbm8iOjU0MjIyNH0sInByZXYiOiI2NjQzM2E1NDUxY2ZiZDAwMDllZGY1NjI4ZDY0ZTkwYmExZjE2MWVjYzk4OWU1MjY0NmJiZGRlYTRhMTE3OTdkIiwic2Vxbm8iOjMxLCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQJU8ibi9cMaInvq7cGJ5+7KwpP3F7TEPG6jXRPastFKAQxZB537TxVzNXuBXbWfwZ5TK32PHg3Ui9WYW2bco2wGoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCB3VvyNDuGr44tUsWsoeW4zYEhnQQxwjEvigy4s2O4OV6N0YWfNAgKndmVyc2lvbgE=
 
 And finally, I am proving ownership of this host by posting or
 appending to this document.
