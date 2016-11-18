@@ -1,3 +1,5 @@
+var webpack = require("webpack");
+
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -6,5 +8,6 @@ module.exports = {
   },
   module: {
     loaders: [{ loader: "babel-loader" }]
-  }
+  },
+  plugins: [new webpack.optimize.UglifyJsPlugin()]
 };
