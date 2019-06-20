@@ -1,0 +1,620 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Building a DIY Router in 2019</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	white-space: pre-line;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	opacity: 0.5;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif; }
+.mono { font-family: Nitti, 'Microsoft YaHei', '微软雅黑', monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, Nitti, 'Microsoft YaHei', '微软雅黑', monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="eb9fe34a-4a1a-44eb-aede-aff705d8356b" class="page sans"><header><h1 class="page-title">Building a DIY Router in 2019</h1></header><div class="page-body"><h1 id="ecc8d088-c4e0-4c78-b868-a30352eec4d0" class="">The Itch</h1><p id="6fe7a189-2da4-401f-97e4-5a5f45d221a2" class="">As a tech nerd, I get bored easily - I switch between iOS and Android at least once a year (thank you, T-Mobile Jump), I switch between Windows and Mac at least twice a year (Hackintosh), and sometimes I even try out Linux as a daily driver to see if someone&#x27;s finally made HiDPi monitors easier to use (so far, no).</p><p id="2134c5c7-2a4d-4094-ab0c-9dfdee7c164e" class="">
+</p><p id="84b2526b-c172-48b5-b143-18e19cfd8998" class="">But recently I&#x27;ve had an itch that I haven&#x27;t had in a while - an itch to mess with hardware. I found myself resentfully looking at my Verizon Quantum Gateway that I pay $10/month to rent. It&#x27;s honestly not a bad router, but the itch isn&#x27;t rational.</p><p id="7c7cfecb-a340-4887-907d-e28188c7262d" class="">
+</p><p id="5053faab-6754-450c-b3dd-6582863597df" class="">I wanted to replace it, but I didn&#x27;t want to just use my old ASUS RT-AC66U. I also didn&#x27;t want to shell out up to $500 on a top-end WiFi 6 router that looks like a sci-fi <a href="https://www.amazon.com/NETGEAR-Nighthawk-8-Stream-AX6000-Router/dp/B01MQDZXA4/ref=sr_1_3?keywords=wifi+6+router&amp;qid=1560717774&amp;s=electronics&amp;sr=1-3">spaceship</a> or an <a href="https://www.amazon.com/ASUS-GT-AX11000-Tri-Band-Aiprotection-Compatible/dp/B07MRD1LDZ/ref=sr_1_4?keywords=wifi+6+router&amp;qid=1560717870&amp;s=electronics&amp;sr=1-4">angry spider</a> that might invert its antennae and scurry away.</p><p id="d29422ed-e0e9-4dae-a8f8-85e71b7343cb" class="">
+</p><p id="4e0a086b-017f-41bc-a00e-afc7541560a2" class="">So I had an arguably irrational thought - what would it take to build a router myself? All I&#x27;d really need is a dumb board with 2 ethernet ports, a switch, and a WiFi access point.</p><p id="87d4329c-dd3e-4c12-84bd-db73a5cbd4d0" class="">
+</p><h1 id="c2806bac-3586-43ed-86af-0fad1a258638" class="">(Arguably Not Enough) Research</h1><p id="94c67445-d8c5-420e-b28d-b92935beedc1" class="">I started looking around the internet for signs that I&#x27;m not totally out of my mind and stumbled upon <a href="https://blog.tjll.net/building-my-perfect-router/">this wonderful blog post</a> by Tyler Langlois. Turns out, the &quot;dumb board&quot; I had been looking for was the <a href="https://espressobin.net/">ESPRESSObin</a>, a Marvell ARM board with 3 gigabit ethernet ports that&#x27;s purpose-built for networking.</p><p id="c43a7d02-439c-4b18-82b7-4eb3d5326155" class="">
+</p><p id="86e4285b-b9b0-49af-b8e9-638569eebda5" class="">I also found <a href="https://arstechnica.com/gadgets/2016/01/numbers-dont-lie-its-time-to-build-your-own-router/">this post</a> by Jim Salter of Ars Technica that proved out the economics of building a router vs. buying one - turns out it&#x27;s cheaper and just as performant as any high-end router you could pick off the shelf. With this in mind, I felt good about scratching this particular itch.</p><p id="14761461-dbf9-4be8-ac95-77e99dfee5bf" class="">
+</p><h1 id="9070e2e4-2a3a-4186-bbc0-00026339c14b" class="">Sidebar - What is a Router?</h1><p id="3ae47ddb-dd32-443b-9b82-55e820bdb071" class="">What most people call a &quot;router&quot; is really a combination of 3 devices - a gateway, a switch, and an access point. Typically these devices are separate in a larger network (such as a corporate network), but for a home network, it&#x27;s common to see one device take on all three roles. So, this is what your black-or-blue box with the antennas <em>really </em>is.</p><p id="99f88774-b7b8-47ae-8288-caad3925d6ba" class="">
+</p><p id="c1ccdfcd-38be-4225-bbe0-cc4dee005698" class="">A <strong>gateway </strong>is a device that sits between your ISP and your home network and allows all the devices on your home network to connect to the internet. In most cases, your ISP only assigns you 1 IP address. But according to the TCP/IP protocol that makes the internet work, <em>every</em> device needs a unique IP address. So how do your phone and laptop both access the internet with only 1 IP?</p><p id="e10b51ba-b6de-4e62-ab4c-edfb6be1312c" class="">
+</p><p id="d16b8bde-7cd2-4844-9ec5-ffdab76e45f8" class="">A gateway uses something called Network Address Translation (NAT) to solve this by creating a <em>local network</em> with its own IP address space (typically in the range of 192.168.1.2 - 192.168.1.254). So while your ISP-assigned IP is something like 108.110.50.153, the gateway isolates this from your devices and instead assigns them something like 192.168.1.150. Now that all your devices have a unique IP, they can access the internet!</p><p id="c07902a5-c8d5-402c-b696-951fb87fc682" class="">
+</p><figure id="dae0a635-98a4-49db-a168-53ecec10a556" class="image"><a href="photos/router/Untitled.png"><img style="width:240px" src="photos/router/Untitled.png"/></a><figcaption>A gateway&#x27;s place in your home</figcaption></figure><p id="d807897a-e3ab-4abe-9bb2-5e2c6e7158bd" class="">
+</p><p id="ae395581-e4f7-44e4-8803-a0140f8a66ef" class="">A <strong>switch </strong>is a device that routes network traffic between devices. Switches are great because they work transparently - you can plug as many devices into a switch as it allows, and network traffic will flow between those devices.</p><p id="a68521f0-9afe-4dac-9e3f-8067a02e68e6" class="">
+</p><p id="b4199588-a849-4dea-92ae-f4ade9809c7f" class="">For this setup, we will plug the internet-connected ESPRESSObin into the switch. Because the switch knows<em> </em>how to route traffic between all devices plugged into it, it will allow any other devices plugged into the switch to access the internet via the ESPRESSObin.</p><p id="c056e55a-427c-4696-883d-5121a7b5db9a" class="">
+</p><p id="df8a3c31-979a-465f-b5b0-e686b663700a" class="">Finally, an <strong>access point</strong> (AP) is a device that uses your wired network to create a wireless (WiFi) network. You can plug an AP into anything that has access to the internet (like our switch!) and it will create a WiFi network for all your wireless devices.</p><p id="9178dc13-cd35-471a-9e85-c20506b7cd98" class="">
+</p><p id="899fcc07-ff8a-4e60-b7b6-b79b5e769ee9" class="">I guess my <a href="https://certification.comptia.org/certifications/a">A+ certification</a> class from high school was useful after all!</p><p id="5650934b-77b8-491b-92e1-f89fd8e67f97" class="">
+</p><h1 id="182d9061-a431-4b4d-bc54-547698a2dd32" class="">Requirements</h1><p id="864f0332-3fb2-48ab-beda-06cef6a99dc0" class="">My requirements for a DIY router were fairly simple - I wanted something that was easy to set up, low-maintenance, highly customizable, and performant.</p><p id="d7454154-635b-4293-8752-b952cac2c46e" class="">
+</p><p id="6fe49d56-2e0e-4366-9fc2-96d660d91b82" class="">To meet the &quot;easy to set up&quot; and &quot;low-maintenance&quot; criteria, I strayed from Tyler Langlois&#x27; blog post because I wanted to avoid the headache of setting up Arch Linux with custom networking configuration and a firewall. So I instead chose to go with <a href="https://openwrt.org/">OpenWRT</a>, a highly-customizable open source Linux distro for embedded devices that&#x27;s widely used as router firmware. The ESPRESSObin is <a href="https://git.openwrt.org/?p=openwrt/openwrt.git;a=commit;h=de3387654b5b65dcd9029d68c8c2fab29f6fef84">natively supported</a> by OpenWRT, so it seemed like a good choice to go with. It also helps that OpenWRT acts as a router out of the box - no configuration needed!</p><p id="17b637fb-7ee7-4ee5-b73f-796fbb61bea8" class="">
+</p><p id="4461f6a7-f86a-4b52-a045-23c0a0986068" class="">Since the ESPRESSObin only has 3 ethernet ports, and you&#x27;ll need at least 2 of those for your modem and AP, you&#x27;ll likely need a switch to support all your wired devices. Netgear makes really great networking gear (ha, I just got it!), so I got an 8-port switch from them.</p><p id="92787120-58aa-4ffc-93bf-d801a665989c" class="">
+</p><p id="9ba99d3d-8967-40c1-a995-181148406681" class="">For the WiFi AP, I went with Tyler&#x27;s suggestion - the <a href="https://store.ui.com/products/unifi-ac-lite">UniFi AC Lite</a>. I&#x27;ve found it to be performant, compact, and highly configurable. These APs are deployed by businesses by the hundreds, so I assumed that getting 1 for my 1-bedroom apartment was good enough.</p><p id="e466d4f8-4c74-4ac9-9e80-95e0ac3a8fbf" class="">
+</p><h1 id="2f338454-d552-4705-ac32-0af5777283e0" class="">Ingredients</h1><ol id="a76e87a1-2806-452b-924f-7628f8f02c7e" class="numbered-list" start="1"><li>The <a href="https://www.amazon.com/gp/product/B07KTMBCS1">ESPRESSObin</a> board - $79</li></ol><ol id="ff26cc4c-08f5-4d1c-a5c8-cb6f20e3ea5d" class="numbered-list" start="2"><li>A <a href="https://www.amazon.com/gp/product/B07KTC9JVB">power adapter</a> for the ESPRESSObin - $10</li></ol><ol id="a761bff8-7062-41f4-ac4b-84faa3596f60" class="numbered-list" start="3"><li>A <a href="https://www.amazon.com/gp/product/B073K14CVB">microSD card</a> to hold the OS - $5.79</li></ol><ol id="24c149c1-1584-4848-bd9a-5a7a65182ce0" class="numbered-list" start="4"><li>A <a href="https://www.amazon.com/gp/product/B00MPVR50A">switch</a> for all your wired devices - $39.99</li></ol><ol id="a90de713-4e1b-4d5b-af48-d8001fbb09dc" class="numbered-list" start="5"><li>A <a href="https://www.amazon.com/gp/product/B016K4GQVG">WiFi AP</a> for all your wireless devices - $81.26</li></ol><p id="1aeda449-ebee-4f89-8ed5-23d64986ebcc" class="">Total: $216.04 + sales tax</p><p id="89c306e3-af12-4a35-8998-70be05452454" class="">
+</p><p id="079d54a3-8da9-4f49-9ab6-96c78a733a9e" class="">You&#x27;ll also want a few ethernet cables to connect everything together. How many depends on how many wired devices you have, but you&#x27;ll need at least 3 for this setup.</p><p id="777efe40-bf3d-46f8-a255-fbb35276264e" class="">
+</p><p id="fc2013e5-3548-467a-ac30-b0bc72ed31b7" class="">I do realize that this is more expensive than a typical home router, but just like a custom-built PC, it comes with the advantage of being able to swap out individual parts. This becomes useful if, for example, you wanted to eventually support WiFi 6 on your network. With a custom build, you could just buy a WiFi 6 AP instead of a whole WiFi 6 router, all of which currently cost at least $300.</p><p id="e6f01509-e2f3-493d-b3b2-e57c41e73487" class="">
+</p><h1 id="02808a42-709f-4e56-900c-d8e3875332a0" class="">Setting Up the ESPRESSObin</h1><p id="462f24fd-eca8-45bb-a7cb-9041a773be00" class="">Setting up the ESPRESSObin with OpenWRT was fairly easy, not counting some (heavy) pitfalls that I experienced that I will explicitly call out here to prevent anyone from making the same mistakes.</p><p id="44e6d011-c1d6-4be7-858c-a22daf06a836" class="">
+</p><h2 id="a2340516-e10e-4f89-8e2b-21301ea68413" class="">Upgrade the bootloader</h2><p id="20c26950-4804-4ab8-80e7-06e189b6561b" class="">First, you&#x27;ll want to upgrade the bootloader on the ESPRESSObin. Mine came preloaded with an older version that is harder to configure with OpenWRT than the current version (<code>2017.03-armada-17.10</code>). Note that I first followed these instructions on <a href="http://wiki.espressobin.net/tiki-index.php?page=Update+the+Bootloader#USB_stick_or_SD_card">ESPRESSObin&#x27;s website</a>, and you can usually refer to their wiki if you get stuck. It&#x27;s pretty helpful.</p><p id="83bd4e16-8849-4d00-9b42-f6ab3cce28b7" class="">
+</p><p id="cfa80fdd-bc42-4d7b-a274-49c718137025" class="">For some reason (that a software guy like me can&#x27;t ever truly understand), the ESPRESSObin can only be accessed via serial port out of the box. I&#x27;ve never used serial ports before, but luckily this wasn&#x27;t terrible:</p><ol id="f722dbbb-c0fc-4e74-9c1c-153ca900bccd" class="numbered-list" start="1"><li>Plug your ESPRESSObin into a USB port with the included cable</li></ol><ol id="5dc19c5b-8d6e-4807-a5e1-c6a1b0fab64e" class="numbered-list" start="2"><li>Fire up a serial terminal. Note that it will be blank for now and that&#x27;s expected!<ul id="5bff244f-429b-493e-99c9-99ff895dae10" class="bulleted-list"><li>On macOS, you&#x27;ll need a driver first that you can get <a href="http://www.prolific.com.tw/US/ShowProduct.aspx?p_id=229&amp;pcid=41">here</a>. After installing the driver and rebooting, you should be able to use this command to get a terminal ready: <code>sudo screen /dev/ttyUSB0 115200 -L</code><ul id="964d7ca3-50b6-4988-b731-7f77efd33cc1" class="bulleted-list"><li>If that doesn&#x27;t work, try running <code>ls /dev</code> and find a device that looks like <code>/dev/ttyUSBX</code>, where X is a number. You can then use that in the above <code>screen</code> command.</li></ul></li></ul><ul id="e820432b-ab26-494f-8ea9-7834bf767878" class="bulleted-list"><li>On Linux, <code>sudo screen /dev/ttyUSB0 115200</code> should work without any drivers.<ul id="d21676c5-6a7c-458c-8da3-f364b576fb59" class="bulleted-list"><li>Same note applies here as with macOS for finding a non-0 <code>tty</code> device.</li></ul></li></ul><ul id="a09b7e31-a758-4bf6-a315-16cf984e70a1" class="bulleted-list"><li>On Windows, you can use PuTTY with a connection type of &quot;Serial&quot;, a serial line of &quot;COMX&quot;, and a speed of &quot;115200&quot;. Replace the X in COMX with the actual serial port that Windows assigns to your board.</li></ul></li></ol><ol id="68a897f5-4707-4962-a323-41cd29bcbc3a" class="numbered-list" start="3"><li>Plug in your ESPRESSObin&#x27;s power adapter. If all went well, you should see it booting up in the console!<ul id="1993a126-7022-40c4-85aa-79345afee1b7" class="bulleted-list"><li>You will be able to see your current bootloader version during the boot process. If you&#x27;re already running <code>U-Boot 2017.03-armada-17.10</code>, you should be able to skip the rest of this section.</li></ul></li></ol><p id="bcf124ce-78a6-4677-805e-5e455701d36f" class="">
+</p><p id="b70285ef-c951-44d0-873d-8d4cb8b87f34" class="">When your ESPRESSObin first boots, it will fail to actually boot an OS because, well, there isn&#x27;t one. So it will flash some errors and drop you into a bootloader prompt that looks like this:</p><pre id="c7df2b4d-a50a-4b48-b464-e06f078e7b8a" class="code"><code>Marvell&gt;&gt;</code></pre><p id="6a5bc35e-c506-4ee6-8c3e-92a52abedf37" class="">
+</p><p id="f33cc8b8-5aec-445e-86eb-ca05e2df82b5" class="">Here we can run the commands that let us upgrade the bootloader.</p><p id="1c375264-7b65-4dc6-95c4-0b401b663455" class="">
+</p><p id="e7aa3131-9fd5-4770-92cb-773225baecd5" class="">First, download the latest bootloader version from <a href="https://espressobin.net/tech-spec/">here</a>. For the board I bought from Amazon (the one I linked above), you&#x27;ll want <a href="http://espressobin.net/wp-content/uploads/2018/11/ebin-17.10-bootloader.zip">this specific download</a>.</p><p id="075d2e9f-f85c-4809-a652-391fb37aed9d" class="">
+</p><p id="d6966aa5-35f8-4917-881b-d763b6bc2c42" class="">The zip will contain multiple files. For the Amazon board, you&#x27;re gonna be using the file named <code>espressobin-bootloader-cpu-1000-ddr4-1cs-1g-atf-g39a62a1-uboot-g255b9cc-20181107-REL.bin</code>.<strong> If you flash a bootloader that is incompatible, you will put your board into an unusable state. </strong><a href="http://wiki.espressobin.net/tiki-index.php?page=Bootloader+recovery+via+UART">This is recoverable</a>, but recovery can be painful.<strong> </strong>This happened to me and it took hours to recover from, so I&#x27;m hoping that providing these instructions helps someone else not brick their board!</p><p id="3033f2c5-8719-4403-af51-f25c29bfaa80" class="">
+</p><p id="0e920ec5-4282-4144-a1c3-877dac13cc8c" class="">Once you have the correct bootloader file, you&#x27;ll need to transfer it to the root of an ext4-formatted USB flash drive. Instructions for formatting a flash drive are plentiful and I don&#x27;t want to reproduce them here for multiple platforms. But <a href="http://wiki.espressobin.net/tiki-index.php?page=Update+the+Bootloader#USB_stick_or_SD_card">here&#x27;s one tutorial</a> from ESPRESSObin&#x27;s website for Linux users. Note that you could technically use a microSD card for this, but it didn&#x27;t work for me when I tried it.</p><p id="1e70545e-4ada-488c-b723-4cecdcf95f80" class="">
+</p><p id="9e06e597-ce05-407c-bb25-6d6ad094a271" class="">Next, plug your flash drive into one of the 2 USB ports on the ESPRESSObin, and run these commands to update the bootloader:</p><pre id="dbdb1b92-52bc-4353-9d93-55e9af817d24" class="code"><code>Marvell&gt;&gt; usb start
+Marvell&gt;&gt; bubt espressobin-bootloader-cpu-1000-ddr4-1cs-1g-atf-g39a62a1-uboot-g255b9cc-20181107-REL.bin spi usb
+... stuff happens ...
+Marvell&gt;&gt; reset</code></pre><p id="ce1ab244-e3ca-424a-8e6d-0cf2da9a8850" class="">
+</p><p id="23b62349-19c2-4c13-b2d0-8b3bc6bb5589" class="">Sometimes <code>bubt</code> won&#x27;t find the file on your flash drive. You should try again using the other USB port.</p><p id="c8378e33-3b4d-465b-bcfd-412ed51c01f7" class="">
+</p><p id="d459e929-0c98-48ad-9afa-c97e1370780c" class="">Once the board resets into the bootloader prompt again, you&#x27;re good to proceed.</p><p id="e703eac3-fbbe-436e-8124-13617bef8346" class="">
+</p><h2 id="30692ea9-aa86-40cd-962b-b6083e1091b7" class="">Flash your microSD card with OpenWRT</h2><p id="0112d016-cf70-4fca-979e-b0511ce49821" class="">Next, you&#x27;ll have to flash the microSD card with an OpenWRT image. I used the excellent <a href="https://www.balena.io/etcher/">balenaEtcher</a> to flash the microSD card with the current (as of June 2019) release of OpenWRT 18.06.2. You can find OpenWRT releases for the ESPRESSObin <a href="https://downloads.openwrt.org/releases/18.06.2/targets/mvebu/cortexa53/">here</a>. You&#x27;ll want to flash the <code>ext4-sdcard</code> image. All-in-all, this is surprisingly much simpler than making a bootable Windows flash drive in my experience.</p><p id="a7ecbfe3-b192-4a0c-bad5-90bb3b7d0b87" class="">
+</p><h2 id="50481ffc-bef7-4ea8-8a7d-78781c9e8d6a" class="">Boot your new router</h2><p id="b39b3b49-d116-44ed-98a4-bff52fffb7e6" class="">Once the SD card is flashed, insert it into your ESPRESSObin, hook up the board to your computer via serial connection again, and interrupt the boot process when it asks you to. Run these bootloader commands to let the bootloader know how to load OpenWRT:</p><pre id="662feedf-53e2-4730-aac1-c25029b0f5bb" class="code"><code>Marvell&gt;&gt; setenv bootcmd &quot;load mmc 0:1 0x4d00000 boot.scr; source 0x4d00000&quot;
+Marvell&gt;&gt; saveenv
+Marvell&gt;&gt; reset</code></pre><p id="d2a11baa-2ac7-4a59-b6c6-2769179e9251" class="">
+</p><p id="387d9074-00e7-47f0-9d02-a6c643e4d614" class="">After resetting, the board should finally boot and you should see the OpenWRT welcome screen!</p><figure id="e500cca2-7ec6-4f66-b695-92940aa3bb32" class="image"><a href="photos/router/Annotation_2019-06-16_181046.png"><img style="width:562px" src="photos/router/Annotation_2019-06-16_181046.png"/></a></figure><h1 id="a4e04a8a-ace6-41de-884b-ed127c6747d8" class="">Wiring Everything Together</h1><p id="4dfc24b1-9456-4f4f-9b16-dd40d055622a" class="">At this point, your ESPRESSObin is set up and you basically just need to plug stuff in. I won&#x27;t tell you exactly how to plug everything in, but your setup should look something like this (beautiful) diagram.</p><p id="46731a75-61cd-48d5-8fe8-c442eedf16c0" class="">
+</p><figure id="b66f7665-3f7e-4327-ba23-df0df32784b9" class="image"><a href="photos/router/Untitled 1.png"><img style="width:288px" src="photos/router/Untitled 1.png"/></a></figure><p id="34b14566-8bee-4509-a140-c6c3bb42818d" class="">
+</p><h2 id="caddc4cb-8abc-4b45-bfa4-d6232d9a752f" class="">🚨 ALERT: The ports are not mapped correctly! 🚨</h2><p id="b30fa285-902c-4a4d-882c-0fd9935be3d4" class="">Because of what I assume is a bug with OpenWRT&#x27;s ESPRESSObin port mappings, the ports on the ESPRESSObin are <em>not</em> what you would expect them to be.</p><p id="d985e4ed-e4ed-44a3-bd41-f60cec0d62c8" class="">
+</p><p id="1e98a4b1-4b41-4a05-b696-c6b491dad59c" class="">This is the port layout of the ESPRESSObin v7.</p><p id="8069681f-3aee-479d-98c4-6909e56c7342" class="">
+</p><figure id="82f0e32c-8a6f-408e-8a51-7737e4fcdd05" class="image"><a href="photos/router/Untitled 2.png"><img style="width:1183px" src="photos/router/Untitled 2.png"/></a></figure><p id="80c7a840-2727-4927-aecd-2ab961b03054" class="">
+</p><p id="4ad7866f-7169-4cf1-babf-5f280026ab8a" class="">You might expect the WAN port to connect to your modem, and one of the LAN ports would connect to your switch. But that&#x27;s not how OpenWRT sees it. Instead, <strong>you should connect your modem to the LAN2 port and your switch to the WAN port. </strong>Otherwise the DHCP server won&#x27;t work correctly and your devices will look like they&#x27;re connected directly to your modem (that is, assigned an ISP IP address). This will break the network, and you don&#x27;t want that.</p><p id="6b7871b2-d8e4-41a5-b547-be46677bd68c" class="">
+</p><h1 id="b3ed4150-57c5-440f-800e-28a4d7de5641" class="">Setting up OpenWRT</h1><p id="18515861-9edf-4448-a1d0-7459c7d444ed" class="">If all went well, you should be able to access OpenWRT from any device connected to your new network at http://192.168.1.1. Here, you can set the admin dashboard password and your SSH password (no more serial port!). You can also configure any network settings that you&#x27;re used to on your current router, and many more that you likely did not know existed.</p><p id="03fd76fc-bb7a-43d6-8ec6-c3332e977eee" class="">
+</p><figure id="359e0e1a-8172-47af-baec-0e2dbcc2ac2e" class="image"><a href="photos/router/InkedUntitled_LI.jpg"><img style="width:1205px" src="photos/router/InkedUntitled_LI.jpg"/></a><figcaption>OpenWRT Admin Dashboard</figcaption></figure><p id="d45965ff-7990-4e08-b53b-7159e260326b" class="">
+</p><h1 id="6903630b-d1ee-4db8-b612-a2dd12f049f4" class="">Setting up your AP</h1><p id="0343cf6c-7408-492c-9124-4ccbbe3dd094" class="">You should now plug your AP into your switch and walk through its setup process. The UniFi comes with a pretty nice network manager app that has a surprisingly user-friendly setup process for a device that&#x27;s generally meant to be used in a corporate setting.</p><p id="c69fe243-bee7-4065-8896-363af135584e" class="">
+</p><p id="bc12058b-2e1b-4356-8f0e-fb4690152966" class="">If you set up the AP with the same SSID and password as your old router&#x27;s, all your devices should be able to gracefully transition to the new network once your old router is unplugged. I noticed that within a few minutes, everything from my phone to my printer was already talking to the new AP. WiFi&#x27;s pretty great.</p><p id="aa3d703e-6a2b-45e5-8ae2-c5ed99f1814e" class="">
+</p><p id="3824f6b1-c8e0-473c-b878-9bc2f70a778a" class="">With the UniFi, I had to change the 5G network channel because it was slow at first. Luckily, the UniFi network manager lets you do an RF scan to figure out which channels are crowded, and it lets you switch to a less-crowded channel. I&#x27;m surprised that it didn&#x27;t do this automatically, but at least it gave me a nice way to do it manually.</p><p id="1ef92c60-cd4e-4d9c-9ec8-e715c9dc4f14" class="">
+</p><h1 id="77b1aa5f-6358-4f1d-8082-88a21e6c3510" class="">Conclusions</h1><p id="e4b6400f-8ce0-4ac9-95fe-93d284d54725" class="">I&#x27;ve now been running this new setup for over a week, and my network is as stable as ever. Everything runs just as fast as it did with my Verizon router, which I&#x27;ll be returning soon. Nothing has ever randomly crashed or slowed down. Video streaming works great on all the usual providers.</p><p id="6fbf784f-ad34-4d1a-83f5-862cf27f8bfd" class="">
+</p><figure id="f267d37e-8e79-406a-a5df-c7297b2946d2" class="image"><a href="photos/router/Untitled 3.png"><img style="width:959px" src="photos/router/Untitled 3.png"/></a><figcaption>FiOS is pretty great.</figcaption></figure><p id="2fe8068d-a1e1-4a3d-9cde-065b7f215307" class="">
+</p><p id="8d0034d5-149f-4fef-a41c-1dab61c75c2a" class="">I&#x27;ll admit that I haven&#x27;t fully tested all the things that lots of people care about, such as gaming performance. But I&#x27;d certainly feel confident trying that out.</p><p id="46edba8a-c4bd-4245-a1fc-4a51b5eb1175" class="">
+</p><p id="e467a044-fb00-40b5-923a-f966fbb0637b" class="">Overall, I&#x27;m really happy with how this turned out. And most importantly I feel that the itch has indeed been scratched, at least for the moment.</p><p id="295accda-3c3a-493f-884d-71f7dac5b183" class="">
+</p><p id="2ade3b32-3598-4522-ad75-84d1e74c8453" class=""><em>Thanks for reading! You can find me on Twitter </em><em><a href="https://twitter.com/irubnich/">@irubnich</a></em><em>. I mostly complain about NYC transit there but I&#x27;d love to talk about this stuff as well.</em></p><h1 id="48a8a393-9f8b-466a-9c31-14722a0de681" class="">Addendum: The Pi-hole</h1><p id="b227bbd8-519e-4455-9a3b-46e04335dd54" class="">Apart from the itch, what really led me to doing this was the success I had with recycling an old Raspberry Pi as a <a href="https://pi-hole.net/">Pi-hole</a> - a really cool open source project that turns any old Linux machine with an ethernet port into a network-wide ad blocker.</p><p id="ec6bb538-58c4-4ff1-9108-1cb722afdb3d" class="">
+</p><p id="5c4dc1e5-c50c-40f7-8b51-9ff8e67cf2f5" class="">Setting up the Pi-hole motivated me to go deeper into the DIY networking rabbit hole and eventually led me to this whole project. I highly encourage you to check it out.</p><p id="3ee93333-718c-4ad8-a862-9c1399b7d9b5" class="">
+</p><p id="29acc7ba-7a21-4138-a0aa-037b81dccfce" class="">The Pi-hole makes for a great DHCP server companion to an OpenWRT setup. And it also provides customizable network-wide ad blocking. <em>And</em> it comes with a cool dashboard that lets you see your local network in action! Turns out, on average, almost 20% of my network traffic is ads. I guess I expected that, but it still makes you think.</p><p id="5c1e04b9-978f-4794-a773-add0fc90fdb2" class="">
+</p><figure id="a16258f3-d35f-4326-a735-af38b9240fc1" class="image"><a href="photos/router/Annotation_2019-06-16_165927.png"><img style="width:1563px" src="photos/router/Annotation_2019-06-16_165927.png"/></a><figcaption>The Pi-hole dashboard</figcaption></figure><p id="cb02e79f-d9be-4eb0-9507-377e01681481" class="">
+</p></div></article></body></html>
