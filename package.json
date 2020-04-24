@@ -16,5 +16,6 @@
     "url": "https://github.com/irubnich/irubnich.github.io/issues"
   },
   "homepage": "https://github.com/irubnich/irubnich.github.io#readme",
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {}
 }
